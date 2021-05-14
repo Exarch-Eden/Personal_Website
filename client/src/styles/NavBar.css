@@ -1,0 +1,13 @@
+.navBar {
+  display: flex;
+  flex-direction: row;
+}
+
+.navBar > * {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.navBar > *:hover {
+  background-color: #676a70;
+}
