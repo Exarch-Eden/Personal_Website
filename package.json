@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Exarch-Eden/Personal_Website#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1"
   }
 }
