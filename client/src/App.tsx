@@ -2,6 +2,7 @@ import React from "react";
 import "./styles/App.css";
 import NavBar from "./components/NavBar";
 import { BrowserRouter as Router } from "react-router-dom";
+import Routes from "./components/Routes";
 
 function App() {
   return (
@@ -11,12 +12,7 @@ function App() {
           <NavBar />
         </header>
         <main className="mainContainer">
-          <article className="articleContainer">
-            <p>This is article 1</p>
-          </article>
-          <article className="articleContainer">
-            <p>This is article 2</p>
-          </article>
+          <Routes />
         </main>
         <footer className="footerContainer">
           <p>Website by Kent Claudio</p>
