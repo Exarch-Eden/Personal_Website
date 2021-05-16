@@ -1,0 +1,29 @@
+.articleContainer {
+  /* margin: auto;
+  padding: auto; */
+  /* padding-top: -1em; */
+  /* background-color: #71c6d0; */
+  /* balance out the padding-top 1em from mainContainer */
+  /* margin-top: -1em; */
+  height: 100%;
+  width: 100%;
+}
+
+.articleContainer > * {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.titleContainer {
+  background-color: #71c6d0;
+  color: black;
+}
+
+p {
+  margin: 0;
+}
+
+.paddedContainer {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}

@@ -18,7 +18,7 @@ const NavBar = () => {
   return (
     <nav className="navBar" onClick={() => toggleNavVisibility()}>
       <NavLink to="/" text="Home" />
-      <NavLink to="/page2" text="Page2" />
+      <NavLink to="/about" text="About" />
     </nav>
   );
 };
