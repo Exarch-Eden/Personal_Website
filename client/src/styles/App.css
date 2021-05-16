@@ -11,18 +11,13 @@
   color: white;
 }
 
-.mainContainer {
-  background-color: #71c6d0;
-  color: black;
-}
-
 .footerContainer {
   margin-top: auto;
   background-color: #34383d;
   color: white;
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -31,4 +26,4 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */

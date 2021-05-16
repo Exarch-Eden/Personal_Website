@@ -12,7 +12,9 @@ type NavLinkProps = {
 const NavLink = ({ to, text }: NavLinkProps) => {
   return (
     <Link to={to} className="routerLink">
-      <p>{text}</p>
+      <div className="navLinkTextContainer">
+        <p>{text}</p>
+      </div>
     </Link>
   );
 };

@@ -1,19 +1,22 @@
 import React, { ReactElement } from "react";
 
+// css
+import "../styles/Universal.css";
+
 type ErrorProps = {
   errorCode: number;
   errorMessage?: string;
 };
 
-const Error = ({
-  errorCode,
-  errorMessage,
-}: ErrorProps): ReactElement => {
+const Error = ({ errorCode, errorMessage }: ErrorProps): ReactElement => {
   return (
     <article className="articleContainer">
-      <p>
-        Error {errorCode} {errorMessage ? `: ${errorMessage}` : null}
-      </p>
+      <div className="titleContainer">
+        <p>Error {errorCode}</p>
+      </div>
+      <div>
+        <p>{errorMessage ? `${errorMessage}` : null}</p>
+      </div>
     </article>
   );
 };
