@@ -2,17 +2,24 @@ import React, { useEffect, useReducer, useRef, useState } from "react";
 import * as THREE from "three";
 import { useFrame, useLoader } from "@react-three/fiber";
 
+// local imports
+import { PlaneGeometryArgsProps } from "../types";
+
 const cloudBlackSelection = {
   small: "/images/Clouds_Black_Small.png",
   medium: "/images/Clouds_Black_Medium.png",
 };
 
 type CloudSize = "small" | "medium";
-type PlaneGeometryArgsProps = JSX.IntrinsicElements["planeGeometry"]["args"];
+type CloudDirection = "left" | "right";
 
 interface CloudProps {
   size: CloudSize;
   rest?: JSX.IntrinsicElements["mesh"];
+  initialPos?: number;
+  finalPos?: number;
+  speed?: number;
+  direction?: CloudDirection;
 }
 
 const reducer = (
@@ -32,7 +39,14 @@ const reducer = (
   return boxDimensions;
 };
 
-const Cloud: React.FC<CloudProps> = ({ size, rest }) => {
+const Cloud: React.FC<CloudProps> = ({
+  size,
+  initialPos,
+  finalPos,
+  speed,
+  direction,
+  rest,
+}) => {
   const [boxDimensions, dispatch] = useReducer(reducer, [1, 1]);
 
   useEffect(() => {
@@ -53,13 +67,29 @@ const Cloud: React.FC<CloudProps> = ({ size, rest }) => {
     // mesh.current.rotation.x += 0.01;
     // console.log("updating");
 
+    // TODO: Account for:
+    // 1. initial position
+    // 2. final position
+    // 3. speed
+    // 4. direction
+    // 5. default values
+
     // reset the object position once it moves right a certain distance
-    if (mesh.current.position.x > 8) {
-      mesh.current.position.x = 0;
+    if (mesh.current.position.x > 12) {
+      mesh.current.position.x = initialPos ? initialPos : 0;
     } else {
-      // move the object to the right
-      mesh.current.translateX(0.05);
-    }
+      if (direction === "left") {
+        // if speed is positive number, change to negative
+        if (speed && speed > 0) {
+          mesh.current.translateX(speed || -0.025);
+        } else {
+          mesh.current.translateX(speed || -0.025);
+        } // end if
+      } else {
+        // move the object to the right by default
+        mesh.current.translateX(speed || 0.025);
+      } // end if
+    } // end if
     // console.log(mesh.current.position.x);
   });
 
@@ -70,14 +100,10 @@ const Cloud: React.FC<CloudProps> = ({ size, rest }) => {
       <meshBasicMaterial
         attach="material"
         map={imageTexture}
+        color="#D6D6D6"
         side={THREE.FrontSide}
         transparent
       />
-      {/* <meshBasicMaterial attachArray="material" map={imageTexture} />
-      <meshBasicMaterial attachArray="material" map={imageTexture} />
-      <meshBasicMaterial attachArray="material" map={imageTexture} />
-      <meshBasicMaterial attachArray="material" map={imageTexture} />
-      <meshBasicMaterial attachArray="material" map={imageTexture} /> */}
     </mesh>
   );
 };
