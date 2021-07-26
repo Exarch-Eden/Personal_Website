@@ -7,6 +7,7 @@ import "../styles/About.css";
 import { DoughnutData } from "../types";
 
 const localHostApiUrl = "http://localhost:5000/api";
+const productionApiUrl = "/api";
 const chartLabel = "Languages used for this project";
 
 const dummyData: DoughnutData = {
@@ -93,7 +94,7 @@ const About = () => {
     (async () => {
       try {
         // get response (promise)
-        const res = await fetch(localHostApiUrl);
+        const res = await fetch(productionApiUrl);
         console.log("res:\n", res);
         // console.log(res);
 
