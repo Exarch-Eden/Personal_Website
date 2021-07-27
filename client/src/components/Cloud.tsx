@@ -128,8 +128,9 @@ const Cloud: React.FC<CloudProps> = ({
     // console.log(mesh.current.position.x);
   });
 
+  // scale={type === "long" ? 0.5 : 1}
   return (
-    <mesh {...rest} ref={mesh} scale={type === "long" ? 0.5 : 1}>
+    <mesh {...rest} ref={mesh} >
       <planeGeometry attach="geometry" args={boxDimensions} />
       {/* <meshBasicMaterial color="black" side={THREE.DoubleSide} /> */}
       <meshBasicMaterial
