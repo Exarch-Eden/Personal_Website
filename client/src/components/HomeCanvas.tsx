@@ -11,19 +11,31 @@ import "../styles/HomeCanvas.css";
 // example: info regarding vector, type of object (cloud or mountain),
 //  and necessary parameters for said plane object
 
-const CloudSmallLeft1Position: Vector3 = [-14, 2, 1];
-const CloudMediumLeft1Position: Vector3 = [-17, -1, 1];
+const CloudSmallLeft1Position: Vector3 = [-14, 1, 0.5];
+const CloudMediumLeft1Position: Vector3 = [-20, -1, 2];
 const Mountains1Position: Vector3 = [0, 0, 0];
+const MountainsFrontPosition: Vector3 = [0, -0.1, 1];
+const MountainsBackPosition: Vector3 = [0, -1.75, 0];
 
 const CloudMediumLeft1 = {
   position: CloudMediumLeft1Position,
+  scale: 0.25
 };
+
 const CloudSmallLeft1 = {
   position: CloudSmallLeft1Position,
+  scale: 0.5
 };
 
 const Mountains1 = {
   position: Mountains1Position,
+};
+const MountainsFront = {
+  position: MountainsFrontPosition,
+  scale: 0.79
+};
+const MountainsBack = {
+  position: MountainsBackPosition,
 };
 
 const HomeCanvas = () => {
@@ -44,7 +56,9 @@ const HomeCanvas = () => {
           rest={CloudSmallLeft1}
           initialPos={-14}
         />
-        <Mountains rest={Mountains1} />
+        {/* <Mountains type="all" rest={Mountains1} /> */}
+        <Mountains type="front" rest={MountainsFront} />
+        <Mountains type="back" rest={MountainsBack} />
       </Suspense>
     </Canvas>
   );
