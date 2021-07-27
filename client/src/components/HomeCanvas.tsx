@@ -4,14 +4,14 @@ import Cloud from "./Cloud";
 import Mountains from "./Mountains";
 
 // css
-import "../styles/HomeCanvas.css"
+import "../styles/HomeCanvas.css";
 
 // TODO: Create function takes in an array of objects with info
 //  necessary to render a plane object
 // example: info regarding vector, type of object (cloud or mountain),
 //  and necessary parameters for said plane object
 
-const CloudSmallLeft1Position: Vector3 = [-14, 0, 1];
+const CloudSmallLeft1Position: Vector3 = [-14, 2, 1];
 const CloudMediumLeft1Position: Vector3 = [-17, -1, 1];
 const Mountains1Position: Vector3 = [0, 0, 0];
 
@@ -32,8 +32,18 @@ const HomeCanvas = () => {
       {/* <ambientLight /> */}
       {/* <pointLight position={pointLightVector} /> */}
       <Suspense fallback={null}>
-        <Cloud size="medium" rest={CloudMediumLeft1} initialPos={-17} />
-        <Cloud size="small" rest={CloudSmallLeft1} initialPos={-14} />
+        <Cloud
+          size="medium"
+          type="long"
+          rest={CloudMediumLeft1}
+          initialPos={-17}
+        />
+        <Cloud
+          size="small"
+          type="long"
+          rest={CloudSmallLeft1}
+          initialPos={-14}
+        />
         <Mountains rest={Mountains1} />
       </Suspense>
     </Canvas>

@@ -6,15 +6,45 @@ import { useFrame, useLoader } from "@react-three/fiber";
 import { PlaneGeometryArgsProps } from "../types";
 
 const cloudBlackSelection = {
-  small: "/images/Clouds_Black_Small.png",
-  medium: "/images/Clouds_Black_Medium.png",
+  small: {
+    standard: "/images/Clouds_Black_Small.png",
+    long: "/images/Long_Clouds_Grey_Small.png",
+  },
+  medium: {
+    standard: "/images/Clouds_Black_Medium.png",
+    long: "/images/Long_Clouds_Grey_Medium.png",
+  },
+};
+
+interface CloudDimensionsSelector {
+  small: {
+    standard: PlaneGeometryArgsProps;
+    long: PlaneGeometryArgsProps;
+  };
+  medium: {
+    standard: PlaneGeometryArgsProps;
+    long: PlaneGeometryArgsProps;
+  };
+}
+
+const cloudDimensionsSelection: CloudDimensionsSelector = {
+  small: {
+    standard: [2.31, 1.04],
+    long: [5.17, 1.8],
+  },
+  medium: {
+    standard: [4.62, 2.08],
+    long: [7.48, 3.2],
+  },
 };
 
 type CloudSize = "small" | "medium";
+type CloudType = "standard" | "long";
 type CloudDirection = "left" | "right";
 
 interface CloudProps {
   size: CloudSize;
+  type: CloudType;
   rest?: JSX.IntrinsicElements["mesh"];
   initialPos?: number;
   finalPos?: number;
@@ -24,23 +54,27 @@ interface CloudProps {
 
 const reducer = (
   state: any,
-  action: { type: CloudSize }
+  action: { size: CloudSize; type: CloudType }
 ): PlaneGeometryArgsProps => {
-  let boxDimensions: PlaneGeometryArgsProps = [1, 1];
-  switch (action.type) {
-    case "small":
-      boxDimensions = [2.31, 1.04];
-      break;
-    case "medium":
-      boxDimensions = [4.62, 2.08];
-      break;
-  }
+  // let boxDimensions: PlaneGeometryArgsProps = [1, 1];
+  // switch (action.size) {
+  //   case "small":
+  //     boxDimensions = [2.31, 1.04];
+  //     break;
+  //   case "medium":
+  //     boxDimensions = [4.62, 2.08];
+  //     break;
+  // }
+
+  let boxDimensions: PlaneGeometryArgsProps =
+    cloudDimensionsSelection[action.size][action.type];
 
   return boxDimensions;
 };
 
 const Cloud: React.FC<CloudProps> = ({
   size,
+  type,
   initialPos,
   finalPos,
   speed,
@@ -50,14 +84,14 @@ const Cloud: React.FC<CloudProps> = ({
   const [boxDimensions, dispatch] = useReducer(reducer, [1, 1]);
 
   useEffect(() => {
-    dispatch({ type: size });
-  }, [size]);
+    dispatch({ size: size, type: type });
+  }, [size, type]);
 
   const mesh = useRef<THREE.Mesh>(null!);
 
   const imageTexture = useLoader(
     THREE.TextureLoader,
-    cloudBlackSelection[size]
+    cloudBlackSelection[size][type]
   );
 
   // render loop for the mesh
@@ -78,29 +112,29 @@ const Cloud: React.FC<CloudProps> = ({
     if (mesh.current.position.x > 12) {
       mesh.current.position.x = initialPos ? initialPos : 0;
     } else {
-      if (direction === "left") {
-        // if speed is positive number, change to negative
-        if (speed && speed > 0) {
-          mesh.current.translateX(speed || -0.025);
-        } else {
-          mesh.current.translateX(speed || -0.025);
-        } // end if
-      } else {
-        // move the object to the right by default
-        mesh.current.translateX(speed || 0.025);
-      } // end if
+      mesh.current.translateX(speed || 0.025);
+      // if (direction === "left") {
+      //   // if speed is positive number, change to negative
+      //   if (speed && speed > 0) {
+      //     mesh.current.translateX(speed || -0.025);
+      //   } else {
+      //     mesh.current.translateX(speed || -0.025);
+      //   } // end if
+      // } else {
+      //   // move the object to the right by default
+      //   mesh.current.translateX(speed || 0.025);
+      // } // end if
     } // end if
     // console.log(mesh.current.position.x);
   });
 
   return (
-    <mesh {...rest} ref={mesh}>
+    <mesh {...rest} ref={mesh} scale={type === "long" ? 0.5 : 1}>
       <planeGeometry attach="geometry" args={boxDimensions} />
       {/* <meshBasicMaterial color="black" side={THREE.DoubleSide} /> */}
       <meshBasicMaterial
         attach="material"
         map={imageTexture}
-        color="#D6D6D6"
         side={THREE.FrontSide}
         transparent
       />
