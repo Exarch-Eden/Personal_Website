@@ -31,7 +31,7 @@ const reducer = (
       planeDimensions = [14.955, 7.68];
       break;
     case "back":
-      planeDimensions = [16.14, 7.68];
+      planeDimensions = [16.14, 5.93];
       break;
   }
 

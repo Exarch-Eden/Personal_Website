@@ -11,15 +11,17 @@ import "../styles/HomeCanvas.css";
 // example: info regarding vector, type of object (cloud or mountain),
 //  and necessary parameters for said plane object
 
+
+const CameraPosition: Vector3 = [0, 0, 10];
 const CloudSmallLeft1Position: Vector3 = [-14, 1, 0.5];
 const CloudMediumLeft1Position: Vector3 = [-20, -1, 2];
 const Mountains1Position: Vector3 = [0, 0, 0];
-const MountainsFrontPosition: Vector3 = [0, -0.1, 1];
-const MountainsBackPosition: Vector3 = [0, -1.75, 0];
+const MountainsFrontPosition: Vector3 = [0, 0.9, 1];
+const MountainsBackPosition: Vector3 = [0, 0, 0];
 
 const CloudMediumLeft1 = {
   position: CloudMediumLeft1Position,
-  scale: 0.25
+  scale: 0.5
 };
 
 const CloudSmallLeft1 = {
@@ -30,17 +32,23 @@ const CloudSmallLeft1 = {
 const Mountains1 = {
   position: Mountains1Position,
 };
+
 const MountainsFront = {
   position: MountainsFrontPosition,
-  scale: 0.79
+  // scale: 0.79
 };
 const MountainsBack = {
   position: MountainsBackPosition,
+  scale: 1.1
 };
+
+const CanvasCamera = {
+  position: CameraPosition,
+}
 
 const HomeCanvas = () => {
   return (
-    <Canvas className="canvas">
+    <Canvas className="canvas" camera={CanvasCamera}>
       {/* <ambientLight /> */}
       {/* <pointLight position={pointLightVector} /> */}
       <Suspense fallback={null}>
