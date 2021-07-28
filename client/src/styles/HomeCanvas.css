@@ -1,0 +1,10 @@
+.canvasContainer {
+  /* min-height: 600px; */
+  height: 300vh;
+  padding-bottom: 0;
+  /* border: 1px solid blue; */
+}
+
+.homeIntroHeader {
+  font-size: 2em;
+}

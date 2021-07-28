@@ -1,3 +1,9 @@
+.homeContainer.articleContainer {
+  background-color: #e5e5e5;
+}
+
 .cardLayoutContainer {
   padding: 1em;
+  /* for testing purposes */
+  border: 1px solid blue;
 }
