@@ -1,8 +1,11 @@
 import { Canvas, Vector3 } from "@react-three/fiber";
 import React, { Suspense, useRef } from "react";
+import * as THREE from "three";
+import { Html } from "@react-three/drei";
+
+// local imports
 import Cloud from "./Cloud";
 import Mountains from "./Mountains";
-import * as THREE from "three";
 
 // css
 import "../styles/HomeCanvas.css";
@@ -47,6 +50,21 @@ const CanvasCamera = {
 };
 
 const GroupTop = () => {
+  const groupPosition: Vector3 = [0, 0, 0];
+
+  return (
+    <group position={groupPosition}>
+      <Html fullscreen>
+        <div className="homeIntroContainer">
+          <h1 className="homeIntroHeader">Hello World</h1>
+          <p>:LLLLLLLLLLLLLLLLLLL</p>
+        </div>
+      </Html>
+    </group>
+  );
+};
+
+const GroupTopMid = () => {
   return (
     <group>
       <Cloud
@@ -63,8 +81,8 @@ const GroupTop = () => {
   );
 };
 
-const GroupMid = () => {
-  const backgroundPosition: Vector3 = [0, -52.975, 0]
+const GroupBotMid = () => {
+  const backgroundPosition: Vector3 = [0, -52.975, 0];
 
   const mesh = useRef<THREE.Mesh>(null!);
 
@@ -85,7 +103,8 @@ const HomeCanvas = () => {
       {/* <pointLight position={pointLightVector} /> */}
       <Suspense fallback={null}>
         <GroupTop />
-        <GroupMid />
+        <GroupTopMid />
+        <GroupBotMid />
       </Suspense>
     </Canvas>
   );
