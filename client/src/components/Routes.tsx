@@ -13,10 +13,10 @@ const Routes = () => {
       <Route exact path="/about">
         <About />
       </Route>
-      <Route exact path="/404">
+      <Route exact path="/error">
         <Error errorCode={404} errorMessage="Page not found" />
       </Route>
-      <Redirect to="/404" />
+      <Redirect to="/error" />
     </Switch>
   );
 };
