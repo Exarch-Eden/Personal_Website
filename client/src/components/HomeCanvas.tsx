@@ -6,6 +6,7 @@ import { Html } from "@react-three/drei";
 // local imports
 import Cloud from "./Cloud";
 import Mountains from "./Mountains";
+import HomeText from "../text/HomeText";
 
 // css
 import "../styles/HomeCanvas.css";
@@ -56,8 +57,8 @@ const GroupTop = () => {
     <group position={groupPosition}>
       <Html fullscreen>
         <div className="homeIntroContainer">
-          <h1 className="homeIntroHeader">Hello World</h1>
-          <p>:LLLLLLLLLLLLLLLLLLL</p>
+          <h1 className="homeIntroHeader">{HomeText.title}</h1>
+          <p>{HomeText.p1}</p>
         </div>
       </Html>
     </group>
