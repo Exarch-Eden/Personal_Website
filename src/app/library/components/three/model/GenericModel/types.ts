@@ -3,7 +3,7 @@ import { ThreeElements } from "@react-three/fiber";
 
 interface GenericModelProps {
     path: string;
-    primitiveProps: PrimitiveProps;
+    primitiveProps?: Omit<PrimitiveProps, "object">;
 }
 
 export type { GenericModelProps };
