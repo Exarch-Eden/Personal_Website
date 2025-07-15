@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import Home from "../screens/Home";
 import Error from "../screens/Error";
 import About from "../screens/About";
+import Projects from "../screens/Projects";
 
 const Routes = () => {
   return (
@@ -13,10 +14,13 @@ const Routes = () => {
       <Route exact path="/about">
         <About />
       </Route>
-      <Route exact path="/404">
+      <Route exact path="/projects">
+        <Projects />
+      </Route>
+      <Route exact path="/error">
         <Error errorCode={404} errorMessage="Page not found" />
       </Route>
-      <Redirect to="/404" />
+      <Redirect to="/error" />
     </Switch>
   );
 };
