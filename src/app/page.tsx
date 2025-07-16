@@ -2,7 +2,7 @@
 
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
-import { BridgeGardenModel, HighwayLandscapeModel, TownModel } from "./library";
+import { TownModel } from "./library";
 import { OrbitControls } from "@react-three/drei";
 
 const Home = () => {
@@ -12,19 +12,9 @@ const Home = () => {
                 <Suspense fallback={null}>
                     <ambientLight intensity={0.5} />
                     <directionalLight position={[10,10,5]} intensity={1} castShadow />
-                    {/* <spotLight position={[10,10,10]} angle={0.15} penumbra={1} /> */}
+                    <spotLight position={[10,10,10]} angle={0.15} penumbra={1} />
                     <pointLight position={[-10,-10,-10]} intensity={0.5} />
-                    {/* <BridgeGardenModel /> */}
-                                        <mesh position={[2, 0, 0]}>
-                        <boxGeometry args={[1, 1, 1]} />
-                        <meshStandardMaterial color="red" />
-                    </mesh>
-                    <mesh position={[-2, 0, 0]}>
-                        <sphereGeometry args={[0.5]} />
-                        <meshStandardMaterial color="blue" />
-                    </mesh>
-                    <HighwayLandscapeModel />
-                    {/* <TownModel /> */}
+                    <TownModel />
                     <OrbitControls />
                 </Suspense>
             </Canvas>
