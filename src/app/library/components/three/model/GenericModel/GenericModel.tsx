@@ -2,7 +2,6 @@
 
 import { useGLTF } from "@react-three/drei";
 import { GenericModelProps } from "./types";
-import { useEffect } from "react";
 
 const GenericModel: React.FC<GenericModelProps> = ({
     path,
@@ -10,7 +9,7 @@ const GenericModel: React.FC<GenericModelProps> = ({
 }) => {
     const gltf = useGLTF(path);
 
-    const { scene, materials } = gltf
+    const { scene } = gltf
 
     return <primitive scale={[1, 1, 1]} {...primitiveProps} object={scene} />;
 };
